@@ -348,22 +348,80 @@ def format_for_console(articles: list[dict]) -> str:
 
 
 def format_for_telegram(articles: list[dict]) -> str:
-    """Форматирование для Telegram (HTML)."""
+    """Красивое форматирование для Telegram (HTML) — 5 лучших с описанием."""
     if not articles:
         return "🤷 Новых бизнес-новостей пока нет."
 
-    # Берём топ-10 самых свежих
-    top = articles[:10]
-    now = datetime.now().strftime("%d.%m.%Y %H:%M")
+    import re
 
-    lines = [f"📰 <b>BIZ DIGEST</b> — {now}\n"]
+    # Приоритет категорий (бизнес важнее tech-новостей)
+    cat_priority = {
+        "UA_BIZ": 1, "UA_ECON": 2, "UA_TECH": 3,
+        "WORLD_BIZ": 4, "WORLD_TECH": 5,
+    }
 
-    for i, a in enumerate(top, 1):
-        source_short = a["source"].split(" ", 1)[-1] if " " in a["source"] else a["source"]
-        lines.append(f"{i}. <a href=\"{a['link']}\">{a['title']}</a>")
-        lines.append(f"   <i>{source_short}</i>\n")
+    # Эмодзи для категорий
+    cat_emoji = {
+        "UA_BIZ": "💼", "UA_ECON": "📊", "UA_TECH": "🚀",
+        "WORLD_BIZ": "🌍", "WORLD_TECH": "⚡",
+    }
 
-    lines.append(f"📊 Всего собрано: {len(articles)} статей")
+    # Сортируем: сначала UA бизнес, потом мир
+    sorted_articles = sorted(articles, key=lambda a: cat_priority.get(a["category"], 99))
+
+    # Берём по 1 из каждой категории для разнообразия, потом добираем
+    seen_cats = set()
+    top = []
+    for a in sorted_articles:
+        if a["category"] not in seen_cats and len(top) < 5:
+            top.append(a)
+            seen_cats.add(a["category"])
+    # Добираем до 5 если категорий меньше
+    for a in sorted_articles:
+        if len(top) >= 5:
+            break
+        if a not in top:
+            top.append(a)
+
+    now = datetime.now().strftime("%d.%m.%Y")
+    hour = datetime.now().hour
+    greeting = "🌅 Доброе утро" if hour < 12 else "🌆 Добрый вечер"
+
+    lines = []
+    lines.append(f"{greeting}!")
+    lines.append(f"")
+    lines.append(f"📰 <b>BIZ DIGEST</b>  •  {now}")
+    lines.append(f"━━━━━━━━━━━━━━━━━━━━")
+    lines.append("")
+
+    for i, a in enumerate(top[:5], 1):
+        emoji = cat_emoji.get(a["category"], "📌")
+        source_short = a["source"].replace("🇺🇦 ", "").replace("🌍 ", "")
+
+        # Чистим HTML из summary
+        summary = re.sub(r'<[^>]+>', '', a.get("summary", ""))
+        summary = summary.replace("&amp;", "&").replace("&#8217;", "'").replace("&#38;", "&")
+        summary = summary.strip()[:200]
+        # Обрезаем на последнем пробеле
+        if len(summary) >= 200:
+            summary = summary[:summary.rfind(" ")] + "..."
+
+        lines.append(f"{emoji} <b>{i}. {a['title']}</b>")
+        lines.append(f"")
+        if summary:
+            lines.append(f"    {summary}")
+            lines.append(f"")
+        lines.append(f"    🔗 <a href=\"{a['link']}\">Читать →</a>  •  <i>{source_short}</i>")
+        lines.append(f"")
+        if i < 5:
+            lines.append(f"┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
+            lines.append(f"")
+
+    lines.append(f"━━━━━━━━━━━━━━━━━━━━")
+    lines.append(f"📊 Всего собрано: {len(articles)} статей из {len(set(a['source'] for a in articles))} источников")
+    lines.append(f"")
+    lines.append(f"💡 <i>Выбирай что переслать партнёрам!</i>")
+
     return "\n".join(lines)
 
 
