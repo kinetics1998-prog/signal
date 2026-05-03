@@ -1,0 +1,52 @@
+[
+  {
+    "id": "b9c8775fec97",
+    "source": "🇺🇦 Liga.Бізнес",
+    "category": "UA_BIZ",
+    "title": "Цены на аренду жилья в западных регионах растут галопирующими темпами",
+    "link": "https://biz.liga.net/all/nedvizhimost/novosti/tseny-na-arendu-zhilya-v-zapadnyh-regionah-rastut-galopiruyushtimi-tempami",
+    "summary": "Стоимость аренды выросла в большинстве западных городов, рекордсмен по темпам роста – Ужгород",
+    "published": "2026-05-03T06:35:17",
+    "fetched": "2026-05-03T07:05:23.365180"
+  },
+  {
+    "id": "af43ac9c6b1b",
+    "source": "🇺🇦 mind.ua",
+    "category": "UA_BIZ",
+    "title": "Сили оборони уразили російські танкери в порту Новоросійська",
+    "link": "https://mind.ua/news/20304673-sili-oboroni-urazili-rosijski-tankeri-v-portu-novorosijska",
+    "summary": "Судна активно застосовувалися для перевезення нафти",
+    "published": "2026-05-03T07:00:00",
+    "fetched": "2026-05-03T07:05:25.675728"
+  },
+  {
+    "id": "00b5814445bb",
+    "source": "🇺🇦 mind.ua",
+    "category": "UA_BIZ",
+    "title": "Втрати ворога на 3 травня: оборонці ліквідували 1080 військових рф",
+    "link": "https://mind.ua/news/20304672-vtrati-voroga-na-3-travnya-oboronci-likviduvali-1080-vijskovih-rf",
+    "summary": "Знищено два танки, три ББМ, 76 артсистем",
+    "published": "2026-05-03T06:16:00",
+    "fetched": "2026-05-03T07:05:25.675740"
+  },
+  {
+    "id": "5a5ea41ffc48",
+    "source": "🇺🇦 mind.ua",
+    "category": "UA_BIZ",
+    "title": "росіяни не можуть відсвяткувати «перемогу»: які регіони скасували парад з нагоди 9 травня",
+    "link": "https://mind.ua/news/20304671-rosiyani-ne-mozhut-vidsvyatkuvati-peremogu-yaki-regioni-skasuvali-parad-z-nagodi-9-travnya",
+    "summary": "Далекобійні українські безпілотники внесли корективи в сценарії святкувань по всій росії",
+    "published": "2026-05-02T18:20:00",
+    "fetched": "2026-05-03T07:05:25.675748"
+  },
+  {
+    "id": "64fd96e4979d",
+    "source": "🇺🇦 mind.ua",
+    "category": "UA_BIZ",
+    "title": "В ГУР розповіли, як впровадили свого агента в лави «Ахмату»",
+    "link": "https://mind.ua/news/20304670-v-gur-rozpovili-yak-vprovadili-svogo-agenta-v-lavi-ahmatu",
+    "summary": "Це допомогло завдавати ударів по ворогу і зірвати наступ на Сумщині",
+    "published": "2026-05-02T17:55:00",
+    "fetched": "2026-05-03T07:05:25.675755"
+  }
+]
