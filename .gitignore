@@ -1,5 +1,6 @@
 # SIGNAL — secrets and local-only files
 orbit/config.php
+signal_config.php
 *.local.php
 .env
 .env.*
