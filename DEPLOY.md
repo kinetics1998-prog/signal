@@ -2,6 +2,33 @@
 
 Як запустити SIGNAL на проді.
 
+## ⚠️ Найчастіша помилка при деплої PHP
+
+**Не вставляй SQL-міграції замість PHP-коду у File Manager!**
+
+Симптом: відкриваєш `https://chysto.media/signal/orbit/save_profile.php` →
+бачиш `CREATE TABLE IF NOT EXISTS...` як plain text. Це означає файл містить
+SQL замість PHP. Браузер показує `CORS policy` помилку при submit форми
+(бо PHP не виконується → CORS-заголовки не відправляються).
+
+**Як уникнути:** PHP-файли копіюй виключно з GitHub raw URL:
+- https://raw.githubusercontent.com/kinetics1998-prog/signal/main/orbit/save_lead.php
+- https://raw.githubusercontent.com/kinetics1998-prog/signal/main/orbit/save_profile.php
+- https://raw.githubusercontent.com/kinetics1998-prog/signal/main/orbit/_db.php
+
+SQL-міграції (`migrations/*.sql`) запускаються ТІЛЬКИ через phpMyAdmin → SQL tab,
+ніколи не в PHP-файли.
+
+**Перевірка що PHP працює:** відкрий endpoint у браузері напряму:
+```
+https://chysto.media/signal/orbit/save_lead.php
+https://chysto.media/signal/orbit/save_profile.php
+```
+Має повернути JSON `{"error":"method_not_allowed"}` — це нормально (GET не дозволений,
+але PHP запускається). Якщо бачиш HTML, SQL, або щось інше → файл зламано.
+
+---
+
 ## Архітектура
 
 | Компонент | Де живе | URL |

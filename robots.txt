@@ -1,0 +1,9 @@
+# SIGNAL — robots.txt
+# Allow all crawlers, point to sitemap.
+
+User-agent: *
+Allow: /
+Disallow: /orbit/
+Disallow: /designs-preview/
+
+Sitemap: https://kinetics1998-prog.github.io/signal/sitemap.xml

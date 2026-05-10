@@ -320,7 +320,7 @@ function submitContact(e){
     lang:state.lang,
     consent_pdpa:$('f-consent').checked
   };
-  fetch('orbit/save_lead.php',{
+  fetch('https://chysto.media/signal/orbit/save_lead.php',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify(payload)
