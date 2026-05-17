@@ -273,6 +273,18 @@ body.lang-en .en{display:inline!important}
 body.lang-en .en.p-desc{display:block!important}
 body.lang-en li.en{display:flex!important}
 li.en{display:none}
+/* Specificity fix: .vcard ul li{display:flex} (0,1,2) was overriding .en{display:none} (0,1,0) */
+.vcard ul li.en{display:none}
+body.lang-en .vcard ul li.ua{display:none!important}
+body.lang-en .vcard ul li.en{display:flex!important;gap:8px;align-items:flex-start}
+/* Same fix for .reviews-grid p.rv-text (paragraph display defaults to block, .en wins, but make sure) */
+.review-card p.rv-text.en{display:none}
+body.lang-en .review-card p.rv-text.ua{display:none!important}
+body.lang-en .review-card p.rv-text.en{display:block!important}
+/* Same fix for .pl-card-desc, .pl-sub paragraphs */
+.pl-card-desc.en, .pl-sub.en{display:none}
+body.lang-en .pl-card-desc.ua, body.lang-en .pl-sub.ua{display:none!important}
+body.lang-en .pl-card-desc.en, body.lang-en .pl-sub.en{display:block!important}
 </style>
 </head>
 <body>
@@ -475,6 +487,7 @@ li.en{display:none}
 
   <!-- PRIVATE LABEL SECTION -->
   <section class="privlabel" id="private-label" style="margin-top:24px;">
+   <div class="wrap">
     <div class="pl-header">
       <div class="pl-eye">
         <span class="ua">Приватна марка · Private Label</span>
@@ -632,6 +645,7 @@ li.en{display:none}
         <span class="en">📱 Discuss private label → WhatsApp</span>
       </a>
     </div>
+   </div>
   </section>
 
   <!-- VIDEO SHOWCASE — 3 hero products -->
